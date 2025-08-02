@@ -111,8 +111,13 @@ const NewImagingRequest = () => {
     try {
       await mutate(newImagingRequest)
       history.push(`/imaging`)
-    } catch (e) {
-      setError(e)
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        const error = new ImagingRequestError(e.message)
+        setError(error)
+      } else {
+        setError(new ImagingRequestError('An unknown error occurred'))
+      }
     }
   }
 
