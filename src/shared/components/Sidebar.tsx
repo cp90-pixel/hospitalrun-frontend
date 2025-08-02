@@ -28,11 +28,15 @@ const Sidebar = () => {
   }
 
   const expandibleArrow: CSSProperties = {
-    marginRight: '20px',
+    marginRight: '10px',
+    display: 'inline-flex',
+    alignItems: 'center'
   }
 
   const iconMargin: CSSProperties = {
     marginRight: '10px',
+    display: 'inline-flex',
+    alignItems: 'center'
   }
 
   const [expandedItem, setExpandedItem] = useState(
@@ -112,15 +116,18 @@ const Sidebar = () => {
         className="nav-item"
         style={listItemStyle}
       >
-        <Icon
-          icon={
-            splittedPath[1].includes('patient') && expandedItem === 'patient'
-              ? 'down-arrow'
-              : 'right-arrow'
-          }
-          style={expandibleArrow}
-        />
-        <Icon icon="patients" /> {!sidebarCollapsed && t('patients.label')}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Icon
+            icon={
+              splittedPath[1].includes('patient') && expandedItem === 'patient'
+                ? 'down-arrow'
+                : 'right-arrow'
+            }
+            style={expandibleArrow}
+          />
+          <Icon icon="patients" style={{ marginRight: '10px' }} />
+          {!sidebarCollapsed && t('patients.label')}
+        </div>
       </ListItem>
       {splittedPath[1].includes('patient') && expandedItem === 'patient' && (
         <List layout="flush">
@@ -162,15 +169,18 @@ const Sidebar = () => {
         className="nav-item"
         style={listItemStyle}
       >
-        <Icon
-          icon={
-            splittedPath[1].includes('appointments') && expandedItem === 'appointment'
-              ? 'down-arrow'
-              : 'right-arrow'
-          }
-          style={expandibleArrow}
-        />
-        <Icon icon="appointment" /> {!sidebarCollapsed && t('scheduling.label')}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Icon
+            icon={
+              splittedPath[1].includes('appointments') && expandedItem === 'appointment'
+                ? 'down-arrow'
+                : 'right-arrow'
+            }
+            style={expandibleArrow}
+          />
+          <Icon icon="appointment" style={{ marginRight: '10px' }} />
+          {!sidebarCollapsed && t('scheduling.label')}
+        </div>
       </ListItem>
       {splittedPath[1].includes('appointment') && expandedItem === 'appointment' && (
         <List layout="flush" className="nav flex-column">
