@@ -236,7 +236,11 @@ export default {
       patientNumInFamilyNameFeedback: 'Cannot contain numbers.',
       patientNumInPreferredLanguageFeedback: 'Cannot contain numbers.',
       invalidEmail: 'Must be a valid email.',
-      invalidPhoneNumber: 'Must be a valid phone number.',
+      invalidPhoneNumber: 'Please enter a valid phone number (e.g., +1 234-567-8901).',
+      phoneNumberRequired: 'Phone number is required.',
+      invalidPhoneNumberFormat: 'Phone number can only contain numbers, spaces, and these characters: + - ( )',
+      phoneNumberTooShort: 'Phone number must be at least 10 digits long.',
+      phoneNumberTooLong: 'Phone number cannot exceed 15 digits.',
     },
   },
 }

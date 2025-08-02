@@ -11,9 +11,25 @@ const validateEmails = (emails: ContactInfoPiece[] | undefined) =>
   )
 
 const validatePhoneNumbers = (phoneNumbers: ContactInfoPiece[] | undefined) =>
-  (phoneNumbers ?? []).map((phone) =>
-    !validator.isMobilePhone(phone.value) ? 'patient.errors.invalidPhoneNumber' : undefined,
-  )
+  (phoneNumbers ?? []).map((phone) => {
+    const phoneNumber = phone.value.trim()
+    if (!phoneNumber) {
+      return 'patient.errors.phoneNumberRequired'
+    }
+    if (!/^[0-9+()\-\s]+$/.test(phoneNumber)) {
+      return 'patient.errors.invalidPhoneNumberFormat'
+    }
+    if (phoneNumber.length < 10) {
+      return 'patient.errors.phoneNumberTooShort'
+    }
+    if (phoneNumber.length > 15) {
+      return 'patient.errors.phoneNumberTooLong'
+    }
+    if (!validator.isMobilePhone(phoneNumber)) {
+      return 'patient.errors.invalidPhoneNumber'
+    }
+    return undefined
+  })
 
 const existAndIsAfterToday = (value: string | undefined) => {
   if (!value) {
@@ -36,7 +52,14 @@ interface IPatientFieldErrors {
   familyName?: 'patient.errors.patientNumInFamilyNameFeedback'
   preferredLanguage?: 'patient.errors.patientNumInPreferredLanguageFeedback'
   emails?: ('patient.errors.invalidEmail' | undefined)[]
-  phoneNumbers?: ('patient.errors.invalidPhoneNumber' | undefined)[]
+  phoneNumbers?: (
+    | 'patient.errors.invalidPhoneNumber'
+    | 'patient.errors.phoneNumberRequired'
+    | 'patient.errors.invalidPhoneNumberFormat'
+    | 'patient.errors.phoneNumberTooShort'
+    | 'patient.errors.phoneNumberTooLong'
+    | undefined
+  )[]
 }
 
 export class PatientValidationError extends Error {

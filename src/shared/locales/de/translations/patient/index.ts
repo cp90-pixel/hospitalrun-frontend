@@ -115,7 +115,11 @@ export default {
       patientNumInFamilyNameFeedback: 'Kann keine Zahlen enthalten.',
       patientNumInPreferredLanguageFeedback: 'Kann keine Zahlen enthalten.',
       invalidEmail: 'Muss eine gültige E-Mail sein.',
-      invalidPhoneNumber: 'Muss eine gültige Telefonnummer sein.',
+      invalidPhoneNumber: 'Bitte geben Sie eine gültige Telefonnummer ein (z.B. +49 123 45678901).',
+      phoneNumberRequired: 'Telefonnummer ist erforderlich.',
+      invalidPhoneNumberFormat: 'Telefonnummer darf nur Zahlen, Leerzeichen und diese Zeichen enthalten: + - ( )',
+      phoneNumberTooShort: 'Die Telefonnummer muss mindestens 10 Ziffern lang sein.',
+      phoneNumberTooLong: 'Die Telefonnummer darf nicht länger als 15 Ziffern sein.',
     },
   },
 }
